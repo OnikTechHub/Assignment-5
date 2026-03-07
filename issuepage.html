@@ -24,9 +24,9 @@
 <body>
     
     <header>
-        <div class="navbar bg-base-100 shadow-sm">
+        <div class="navbar bg-base-100 shadow-sm h-auto">
             <div class="flex-1">
-                <a class="btn btn-ghost text-xl"><img src="./assets/github-logo.png" alt="" class="w-8">GitHub Issues Tracker</a>
+                <a class="btn btn-ghost text-xl"><img src="./assets/github-logo.png" alt="" class=" w-8">GitHub Issues Tracker</a>
             </div>
             <div class="flex gap-2">
                 <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
@@ -41,7 +41,7 @@
 </div>
 </header>
 
-<main class="w-11/12 mx-auto">
+<main class="w-10/12 mx-auto">
 
   <section class="gap-10  mt-24 p-4 shadow-sm shadow-gray-300  bg-white">
     <button class="btn px-8 btn-primary">All</button>
@@ -67,34 +67,29 @@
       </div>
     </div>
   
-    <div class="bg-gray-50 p-2 grid grid-cols-4" id="issue-container">
-      <!-- card -->
+    <div class="bg-gray-50 p-2 grid md:grid-cols-2 lg:grid-cols-4 gap-4" id="issue-container">
+<!--       
        <class class="max-w-sm bg-white rounded-xl shadow-md border-t-4 mt-4 border-green-500 p-5">
-        <!-- Top Section -->
+        
          <div class="flex justify-between items-center mb-6">
         
-        <!-- Icon -->
          <div class="w-10 h-10 flex items-center justify-center bg-green-100 rounded-full">
           <img class="w-8" src="./assets/Open-Status.png" alt="">
         </div>
-        
-        <!-- Priority -->
+
         <span class="bg-red-100 text-red-500 text-sm px-4 py-1 rounded-full font-semibold">HIGH</span>
       </div>
   
-      <!-- Title -->
   
       <h2 class="text-lg font-bold text-gray-800 mb-2">
          Fix Navigation Menu On Mobile Devices
       </h2>
   
-      <!-- Description -->
   
       <p class="text-gray-500 text-sm mb-4 line-clamp-2">
         The navigation menu doesn't collapse properly on mobile devices...
       </p>
   
-      <!-- Tags -->
   
       <div class="flex gap-3 mb-4">
         
@@ -102,17 +97,23 @@
     
         <span class="flex items-center gap-1 bg-orange-100 text-orange-500 text-xs px-3 py-1 rounded-full font-medium"><i class="fa-solid fa-life-ring"></i>HELP WANTED</span>
       </div>
-      
+
       <div class="border-t pt-3 text-sm text-gray-500">
         <p>#1 by john_doe</p>
         <p>1/15/2024</p>
-      </div>
+      </div> -->
     </div>
     
   </section>
+
+  <section>
+    <div class="flex items-center justify-center mt-4">
+      <span id="spinner" class="loading loading-dots loading-xl hidden"></span>
+    </div>
+  </section>
+
 </main>
   
-
 <script src="./script/script.js"></script>
 </body>
 </html>
