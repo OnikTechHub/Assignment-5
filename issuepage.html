@@ -21,99 +21,76 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
 </head>
-<body>
+<body class="bg-gray-100">
+  
+  <header>
+    <div class="navbar bg-base-100 shadow-sm flex flex-col md:flex-row items-center justify-between px-4 py-2 md:py-4 gap-3 md:gap-6">
+      <div class="flex gap-3 items-center">
+        <img class="w-10 h-10 md:w-12 md:h-12" src="./assets/github-logo.png" alt="Logo">
+        <p class="text-lg md:text-2xl font-bold whitespace-nowrap">
+        GitHub Issues Tracker</p>
+      </div>
+      
+      <div class="join flex w-full md:w-auto gap-2">
+        <div>
+          <label class="input validator join-item">
+            <input id="input-text" type="text" placeholder="Search issues" />
+            </label>
+          </div>
+          <button id="input-search" class="btn btn-primary join-item text-white">+New Issue</button>
+        </div>
+      </div>
+    </header>
     
-    <header>
-        <div class="navbar bg-base-100 shadow-sm h-auto">
-            <div class="flex-1">
-                <a class="btn btn-ghost text-xl"><img src="./assets/github-logo.png" alt="" class=" w-8">GitHub Issues Tracker</a>
+    
+    <main class="w-10/12 mx-auto ">
+      
+      <section class="gap-10  mt-10 p-2 md:p-4 shadow-sm shadow-gray-300  bg-white ">
+        
+        <button  id="all-btn"  class="btn px-8 btn-primary">All</button>
+        <button  id="open-btn" class="btn px-8 ">Open</button>
+        <button  id="close-btn" class="btn px-8 ">Closed</button>
+      </section>
+
+      <section>
+        <div class="flex flex-col-reverse lg:flex-row lg:justify-between bg-white shadow-sm shadow-gray-400 p-4 items-center mt-10 ">
+          <div class="flex justify-between gap-2  ">
+            <img class= "w-15 h-15 border border-10 border-gray-200 rounded-full" src="./assets/Aperture.png" alt="">
+            <div class="">
+              <h1 id="issue-count" class="text-lg md:text-2xl lg:text-3xl font-bold">0 Issues</h1>
+              <p class="text-gray-600 lg:w-4xl">Track and manage your project issues</p>
             </div>
-            <div class="flex gap-2">
-                <input id="searchInput" type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
-                <div class="dropdown dropdown-end">
-                <div class="w-full rounded">
-          <button class="btn btn-primary">+New Issue</button>
+          </div>
+          <div class="flex gap-2">
+            <div>
+              <p><span class="inline-block w-3 h-3 bg-green-500 rounded-full"> </span> Open</p>
+            </div>
+            <div>
+              <p><span class="inline-block w-3 h-3 bg-purple-500 rounded-full"> </span> Closed</p>
+            </div>
+          </div>
         </div>
-      </div>
-    
-    </div>  
-  </div>
-</div>
-</header>
-
-<main class="w-10/12 mx-auto">
-
-  <section class="gap-10  mt-24 p-4 shadow-sm shadow-gray-300  bg-white">
-    <button id="allBtn" class="btn px-8 btn-primary">All</button>
-    <button id="openBtn" class="btn px-8 ">Open</button>
-    <button id="closedBtn" class="btn px-8 ">Closed</button>
-  </section>
-  <section>
-    <div class="flex justify-between bg-white shadow-sm shadow-gray-400 p-4 items-center mt-4">
-      <div class="flex justify-between gap-5 ">
-        <img class="w-15 h-15 border border-10 border-gray-200 rounded-full" src="./assets/Aperture.png" alt="">
-        <div class="">
-          <h1 class="text-3xl font-bold">50 Issues</h1>
-          <p class="text-gray-600 w-4xl">Track and manage your project issues</p>
-        </div>
-      </div>
-      <div class="flex gap-2">
-        <div>
-          <p><span class="inline-block w-3 h-3 bg-green-500 rounded-full"> </span> Open</p>
-        </div>
-        <div>
-          <p><span class="inline-block w-3 h-3 bg-purple-500 rounded-full"> </span> Closed</p>
-        </div>
-      </div>
-    </div>
-  
-    <div class="bg-gray-50 p-2 grid md:grid-cols-2 lg:grid-cols-4 gap-4" id="issue-container">
-<!--       
-       <class class="max-w-sm bg-white rounded-xl shadow-md border-t-4 mt-4 border-green-500 p-5">
         
-         <div class="flex justify-between items-center mb-6">
-        
-         <div class="w-10 h-10 flex items-center justify-center bg-green-100 rounded-full">
-          <img class="w-8" src="./assets/Open-Status.png" alt="">
+        <dialog id="modal" class="modal modal-bottom sm:modal-middle">
+          <div  class="modal-box">
+            <div id="modal-container" ></div>
+            <div class="modal-action">
+              <form method="dialog">
+                <button class="btn btn-primary">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+
+
+      <section class="bg-gray-50 p-2  grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5" id="issue-container">
+      </section>
+  
+      <section>
+        <div class="flex items-center justify-center mt-4"><span id="spinner" class="loading loading-dots loading-xl hidden"></span>
         </div>
-
-        <span class="bg-red-100 text-red-500 text-sm px-4 py-1 rounded-full font-semibold">HIGH</span>
-      </div>
-  
-  
-      <h2 class="text-lg font-bold text-gray-800 mb-2">
-         Fix Navigation Menu On Mobile Devices
-      </h2>
-  
-  
-      <p class="text-gray-500 text-sm mb-4 line-clamp-2">
-        The navigation menu doesn't collapse properly on mobile devices...
-      </p>
-  
-  
-      <div class="flex gap-3 mb-4">
-        
-        <span class="flex items-center gap-1 bg-red-100 text-red-500 text-xs px-3 py-1 rounded-full font-medium"><i class="fa-solid fa-bug  "></i>BUG</span>
-    
-        <span class="flex items-center gap-1 bg-orange-100 text-orange-500 text-xs px-3 py-1 rounded-full font-medium"><i class="fa-solid fa-life-ring"></i>HELP WANTED</span>
-      </div>
-
-      <div class="border-t pt-3 text-sm text-gray-500">
-        <p>#1 by john_doe</p>
-        <p>1/15/2024</p>
-      </div> -->
-    </div>
-    
-  </section>
-
-  <section>
-    <div class="flex items-center justify-center mt-4">
-      <span id="spinner" class="loading loading-dots loading-xl hidden"></span>
-    </div>
-  </section>
-
-</main>
-  
-<script src="./script/script.js"></script>
+      </section>
+    </main>
+    <script src="./script/script.js"></script>
 </body>
 </html>
